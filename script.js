@@ -5,27 +5,42 @@
 
   var EVENT = {
     title: "החתונה של נתיב ואוראל 💍",
-    details: "שמרו את התאריך! הזמנה רשמית ופרטי המקום יישלחו בהמשך.\n" + location.href,
-    location: "ישראל (פרטים יישלחו בהמשך)"
+    details:
+      "שמרו את התאריך! הזמנה רשמית ופרטי המקום יישלחו בהמשך.\nhttps://npwebdesine-lang.github.io/Save-the-date/",
+    location: "ישראל (פרטים יישלחו בהמשך)",
   };
 
   // 20261217T173000Z
   function toUTCStamp(d) {
-    return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    return d
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .replace(/\.\d{3}/, "");
   }
 
   // ---- Google Calendar link ----
-  var gcal = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-    "&text=" + encodeURIComponent(EVENT.title) +
-    "&dates=" + toUTCStamp(START) + "/" + toUTCStamp(END) +
-    "&details=" + encodeURIComponent(EVENT.details) +
-    "&location=" + encodeURIComponent(EVENT.location) +
+  var gcal =
+    "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" +
+    encodeURIComponent(EVENT.title) +
+    "&dates=" +
+    toUTCStamp(START) +
+    "/" +
+    toUTCStamp(END) +
+    "&details=" +
+    encodeURIComponent(EVENT.details) +
+    "&location=" +
+    encodeURIComponent(EVENT.location) +
     "&ctz=Asia/Jerusalem";
   document.getElementById("gcalLink").href = gcal;
 
   // ---- .ics download ----
   function escapeICS(s) {
-    return s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+    return s
+      .replace(/\\/g, "\\\\")
+      .replace(/;/g, "\\;")
+      .replace(/,/g, "\\,")
+      .replace(/\n/g, "\\n");
   }
 
   function buildICS() {
@@ -49,7 +64,7 @@
       "DESCRIPTION:" + escapeICS("עוד שבוע החתונה של נתיב ואוראל!"),
       "END:VALARM",
       "END:VEVENT",
-      "END:VCALENDAR"
+      "END:VCALENDAR",
     ].join("\r\n");
   }
 
@@ -62,7 +77,9 @@
     document.body.appendChild(a);
     a.click();
     a.remove();
-    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
     closeMenu();
   });
 
@@ -70,8 +87,14 @@
   var btn = document.getElementById("calBtn");
   var menu = document.getElementById("calMenu");
 
-  function openMenu() { menu.hidden = false; btn.setAttribute("aria-expanded", "true"); }
-  function closeMenu() { menu.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+  function openMenu() {
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+  }
+  function closeMenu() {
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  }
 
   btn.addEventListener("click", function (e) {
     e.stopPropagation();
@@ -82,7 +105,10 @@
     if (!menu.hidden && !menu.contains(e.target)) closeMenu();
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !menu.hidden) { closeMenu(); btn.focus(); }
+    if (e.key === "Escape" && !menu.hidden) {
+      closeMenu();
+      btn.focus();
+    }
   });
 
   // ---- Countdown ----
