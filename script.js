@@ -6,8 +6,8 @@
   var EVENT = {
     title: "החתונה של נתיב ואוראל 💍",
     details:
-      "שמרו את התאריך! הזמנה רשמית ופרטי המקום יישלחו בהמשך.\nhttps://npwebdesine-lang.github.io/Save-the-date/",
-    location: "ישראל (פרטים יישלחו בהמשך)",
+      "שמרו את התאריך! הזמנה רשמית תישלח בהמשך.\nhttps://save-the-date-dusky-gamma.vercel.app/",
+    location: "אולם אטורה",
   };
 
   // 20261217T173000Z
